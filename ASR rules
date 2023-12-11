@@ -1,4 +1,4 @@
-The following command indicates for each devices, how many times an ASR rules were triggered : 
+##The following command indicates for each devices, how many times an ASR rules were triggered : 
 ```
 DeviceEvents
 | where ActionType startswith "Asr"
@@ -6,7 +6,7 @@ DeviceEvents
 | sort by count_
 ```
 
-The following command counts the number of device Windows 10 and 11 are compliant per ASR rules : 
+##The following command counts the number of device Windows 10 and 11 are compliant per ASR rules : 
 ```
 //ConfigurationId == "scid-2500", "BlockMailExe",
 //ConfigurationId == "scid-2501", "BlockOfficeChildProc",
