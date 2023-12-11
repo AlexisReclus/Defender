@@ -6,7 +6,7 @@ DeviceEvents
 | sort by count_
 ```
 
-The following command counts the number of device compliant per ASR rules : 
+The following command counts the number of device Windows 10 and 11 are compliant per ASR rules : 
 ```
 //ConfigurationId == "scid-2500", "BlockMailExe",
 //ConfigurationId == "scid-2501", "BlockOfficeChildProc",
@@ -27,6 +27,6 @@ The following command counts the number of device compliant per ASR rules :
 //ConfigurationId == "scid-2021", "ControlledFolderAccess"
 
 DeviceTvmSecureConfigurationAssessment
-| where ConfigurationId in ("scid-2500", "scid-2501", "scid-2502", "scid-2503", "scid-2504", "scid-2505", "scid-2506", "scid-2507", "scid-2508", "scid-2509", "scid-2510","scid-2511","scid-2512","scid-2513","scid-2514", "scid-2515", "scid-2021")
-| summarize count_distinctif(DeviceName,(IsCompliant)==1) by ConfigurationId
+| where OSPlatform in ("Windows10", "Windows11") and ConfigurationId in ("scid-2500", "scid-2501", "scid-2502", "scid-2503", "scid-2504", "scid-2505", "scid-2506", "scid-2507", "scid-2508", "scid-2509", "scid-2510","scid-2511","scid-2512","scid-2513","scid-2514", "scid-2515", "scid-2021")
+| summarize count_distinctif(ConfigurationId,(IsCompliant)==1) by DeviceName
 ```
