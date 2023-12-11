@@ -1,0 +1,7 @@
+The following command indicates for each devices, how many times an ASR rules were triggered : 
+```
+DeviceEvents
+| where ActionType startswith "Asr"
+| summarize count() by DeviceName
+| sort by count_
+```
