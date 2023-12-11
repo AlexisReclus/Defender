@@ -30,3 +30,12 @@ DeviceTvmSecureConfigurationAssessment
 | where OSPlatform in ("Windows10", "Windows11") and ConfigurationId in ("scid-2500", "scid-2501", "scid-2502", "scid-2503", "scid-2504", "scid-2505", "scid-2506", "scid-2507", "scid-2508", "scid-2509", "scid-2510","scid-2511","scid-2512","scid-2513","scid-2514", "scid-2515", "scid-2021")
 | summarize count_distinctif(ConfigurationId,(IsCompliant)==1) by DeviceName
 ```
+
+
+## The following command counts the number of devices Windows 10 and 11 compliant per ASR rule : 
+```
+DeviceTvmSecureConfigurationAssessment
+| where OSPlatform in ("Windows10", "Windows11") and ConfigurationId in ("scid-2500", "scid-2501", "scid-2502", "scid-2503", "scid-2504", "scid-2505", "scid-2506", "scid-2507", "scid-2508", "scid-2509", "scid-2510","scid-2511","scid-2512","scid-2513","scid-2514", "scid-2515", "scid-2021")
+| summarize count_distinctif(DeviceName,(IsCompliant)==1) by ConfigurationId 
+| sort by ConfigurationId asc 
+```
