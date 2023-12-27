@@ -39,3 +39,25 @@ DeviceTvmSecureConfigurationAssessment
 | summarize count_distinctif(DeviceName,(IsCompliant)==1) by ConfigurationId 
 | sort by ConfigurationId asc 
 ```
+
+## ASR Rules block mode: PIE CHART 
+```
+DeviceEvents 
+| where Timestamp > ago(7d) 
+| where ActionType startswith "asr" 
+| extend Parsed = parse_json(AdditionalFields) 
+| where Parsed.IsAudit == "false" 
+| summarize ASR_rule_case = count() by ActionType
+| render piechart 
+```
+
+## ASR Rules Audit mode: PIE CHART 
+```
+DeviceEvents 
+| where Timestamp > ago(7d) 
+| where ActionType startswith "asr" 
+| extend Parsed = parse_json(AdditionalFields) 
+| where Parsed.IsAudit == "true" 
+| summarize ASR_rule_case = count() by ActionType
+| render piechart 
+```
